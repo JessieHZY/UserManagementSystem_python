@@ -1,0 +1,43 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
+{% block title %}
+    <h1>修改个人信息</h1>
+{% endblock %}
+
+{% block content %}
+    {% comment %} <div class="btn-toolbar"> {% endcomment %}
+        {% comment %} <div class="btn-group">#进一步增加管理员，做如下修改 {% endcomment %}
+            {% comment %} {% url "adduserurl" as theadduserurl %} {% endcomment %}
+            {% comment %} <a class="btn btn-default {%if request.path == theadduserurl%} active {%endif%}" href={{ theadduserurl }}><span class="glyphicon glyphicon-edit"></span>新建用户</a> {% endcomment %}
+            {% comment %} {% url "listuserurl" as thelistuserurl %} {% endcomment %}
+            {% comment %} <a class="btn btn-default {%if request.path == thelistuserurl%} active {%endif%}" href={{ thelistuserurl }}><span class="glyphicon glyphicon-list"></span>用户列表</a> {% endcomment %}
+        {% comment %} </div> {% endcomment %}
+    {% comment %} </div> {% endcomment %}
+
+    <hr/>
+
+    {% comment %} <form class="form-horizontal" role="form" action={% url "edituserurl" ID %} method="POST" > {% endcomment %}
+    <form class="form-horizontal" action={% url "edituserurl" %} method="POST" >
+    {% csrf_token %}
+
+        {% for item in form %}
+            <div class="form-group">
+                <label class="control-label col-md-1">{{item.label}}</label>
+                <div class="col-md-2">
+                    {{item}}
+                </div>
+                <div class="col-md-offset-1 col-md-10">
+                    {{item.errors}}
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-10">
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('确认更新吗？')">更 新</button>
+                <a href="/user/changepwd">修改密码</a>
+                {% comment %} <a class="btn btn-danger btn-sm" href={% url "resetpasswordurl" %} onclick="return confirm('确认重置密码吗？？')">重置密码</a> {% endcomment %}
+            <div>
+        </div>
+    </form>
+{% endblock %}

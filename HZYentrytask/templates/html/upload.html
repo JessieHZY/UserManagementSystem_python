@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block title %}
+    <h1>上传图片界面</h1>
+{% endblock %}
+<hr/>
+<body>
+ 
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% comment %} <div>账号:<input type="text" name="username"></div> {% endcomment %}
+    <div>选择头像<input type="file" name="avatar"></div>
+    <input type="submit" value="提交"> 
+</form> 
+
+
+{% comment %} <script src="/templates/js/jquery-3.2.1.min.js"></script>
+<script>
+    $('#submit-btn').on('click',function () {
+          
+    $.ajax({<br> 
+    type:'post', <br>        
+     data:formdata, <br> success:function (arg) 
+     { <br>           
+        if (arg.state == 1){ alert('成功！') }
+        else { alert('失败！') } 
+     } 
+     }) 
+     });<br> 
+</script> 
+  {% endcomment %}
+
+
+
+
+</body>
+</html>

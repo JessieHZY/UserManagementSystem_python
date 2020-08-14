@@ -1,0 +1,49 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% load static %}
+{% block title %}<h1>个人信息</h1>{% endblock %}
+{% block content %}
+<hr/>
+    <div class="row text-center">
+    <div class="col-md-6">
+        <div class="row">
+        <div class="col-md-3 text-right">
+            <span>账号：</span>{{ userinfo.username }}
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-right">
+                <span>邮箱：</span>{{ userinfo.email }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-right">
+                <span>姓名：</span>{{ userinfo.nickname }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-right">
+                <span>性别：</span>{{ userinfo.sex }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-right">
+                <span>状态：</span>{{ userinfo.is_active }}
+            </div>
+        </div> 
+    </div>
+    <div class="col-md-6">
+        <p>头像</p>
+    </div> 
+    </div>
+
+
+{% if user.is_authenticated %}
+<a href="/edit">编辑</a>
+<a href="/user/changepwd">修改密码</a>
+{% comment %} <a href="/#">back</a>  {% endcomment %}
+{% comment %} <a href="#" Back</a > onclick=”javascript:history.back(-1);” ></button> {% endcomment %}
+<a href= "/home" onClick=”javascript:history.back(-1);”>返回上一页</a >
+{% comment %} <a href="<a href="javascript:history.back(-1)>">Back</a> {% endcomment %}
+{% endif %}
+{% endblock %}
+

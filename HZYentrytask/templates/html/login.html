@@ -1,0 +1,36 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
+{% block title %}
+    <h1>用户登录界面</h1>
+{% endblock %}
+<hr/>
+{% block content %}
+    {% comment %} <form class="form-horizontal" role="form" action={% url "loginurl" %} method="POST" > {% endcomment %}
+    <form class="form-horizontal" action={% url "loginurl" %} method="POST" >
+    {% csrf_token %}
+
+        {% for item in form %}
+            <div class="form-group">
+                <label class="control-label col-md-1">{{item.label}}</label>
+                <div class="col-md-2">
+                    {{item}}
+                </div>
+                <div class="col-md-offset-1 col-md-10">
+                    {{item.errors}} {{error_msg}}
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-10">
+                <input type="hidden" name="next" value="{{ next }}" >
+                <button type="submit" class="btn btn-success btn-sm">登 录</button>
+                {% comment %} <button class="btn btn-success btn-sm" href="register">注册</button>  {% endcomment %}
+                <a href="register">注册</a> {# 在登录界面增加注册的链接 #}  
+            </div>
+        </div>
+        
+
+    </form>
+{% endblock %}
+

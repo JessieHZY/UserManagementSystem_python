@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% block title %}
+    <h1>用户注册界面</h1>
+{% endblock %}
+<hr/>
+<html lang="en">
+    
+    <body>    
+        <form method="post" action="register">       
+            {% csrf_token %}  {# 防止csrf（跨站请求伪造） #}     
+            <label>账号：</label>        
+            <input name="username">        
+            <div></div>        
+            <label>密码：</label>        
+            <input type="password" name="password">  <br>      
+            <input type="submit" value="注册" />  
+            {% comment %} <label>邮箱：</label>        
+            <input name="email">    {% endcomment %}
+        </form>
+    </body>
+</html>
+

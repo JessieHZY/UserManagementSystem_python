@@ -1,0 +1,70 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% load static %}
+{% block title %}<h1>个人信息</h1>{% endblock %}
+{% block content %}
+    <hr/>
+    {% comment %} <form class="form-horizontal" action={% url "showprofileurl" %} method="Get" >
+        {% csrf_token %}
+
+        {% for item in form %}
+            <div class="form-group">
+                <label class="control-label col-md-1">{{item.label}}</label>
+                <div class="col-md-2">
+                    {{item}}
+                </div>
+            </div>
+        {% endfor %}
+    </form> {% endcomment %}
+
+
+    <div class="row text-center">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-3 text-right">
+                <span>账号：</span>{{ userinfo.username }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-right">
+                <span>名字：</span>
+                {% comment %} {{ extra_info.nickname|default:"----" }} {% endcomment %}
+                {{ userinfo.first_name|default:"----" }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-right">
+                <span>姓氏：</span>
+                {% comment %} {{ extra_info.sex |default:"----"}} {% endcomment %}
+                {{ userinfo.last_name |default:"----"}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-right">
+                <span>邮箱：</span>{{ userinfo.email |default:"----" }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-right">
+                <span>状态：</span>
+                    {% if userinfo.is_active %}
+                        <span class="label label-success">启用</span>
+                    {% else %}
+                        <span class="label label-default">禁用</span>
+                    {% endif %}
+                
+            </div>
+        </div> 
+    </div>
+ 
+
+
+{% if user.is_authenticated %}
+<a href="/edit">编辑</a>
+<a href="/user/changepwd">修改密码</a>
+{% comment %} <a href="/#">back</a>  {% endcomment %}
+{% comment %} <a href="#" Back</a > onclick=”javascript:history.back(-1);” ></button> {% endcomment %}
+{% comment %} <a href= "/home" onClick=”javascript:history.back(-1);”>返回上一页</a > {% endcomment %}
+{% comment %} <a href="<a href="javascript:history.back(-1)>">Back</a> {% endcomment %}
+{% endif %}
+{% endblock %}
+

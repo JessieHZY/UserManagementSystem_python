@@ -1,0 +1,32 @@
+
+{% block title %}
+    <h1>用户注册界面</h1>
+{% endblock %}
+
+{% block content %}
+<hr/>
+    {% comment %} <form class="form-horizontal" role="form" action={% url "loginurl" %} method="POST" > {% endcomment %}
+    <form class="form-horizontal" action={% url "register" %} method="POST" >
+    {% csrf_token %}  
+        {% for item in form %}
+            <div class="form-group">
+                <label class="control-label col-md-1">{{item.label}}</label>
+                <div class="col-md-2">
+                    {{item}}
+                </div>
+                <div class="col-md-offset-1 col-md-10">
+                    {{item.errors}}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-10">
+                <input type="hidden" name="next" value="{{ next }}" />
+                <button type="submit" class="btn btn-success btn-sm">注册</button>
+            </div>
+        </div>
+        
+
+    </form>
+{% endblock %}
+
